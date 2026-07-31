@@ -4,6 +4,33 @@ A modern Single Page Application (SPA) designed to manage employees and leave re
 
 ---
 
+## Getting Started
+
+### 1. Start the Backend API
+1. Navigate to the `backend` folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server (uses `nodemon`):
+   ```bash
+   npm run dev
+   ```
+   The backend server will run on `http://localhost:3000`.
+
+### 2. Run the Frontend
+1. Open `frontend/index.html` in your web browser.
+2. For the best experience (and to allow `fetch` requests for templates without CORS blocking local file protocol issues), open it using a local development server such as VS Code's **Live Server** extension, or run:
+   ```bash
+   # From the frontend directory, e.g.:
+   npx serve .
+   ```
+
+---
+
 ## Project Structure
 
 ```text
@@ -76,30 +103,3 @@ hr-management-system/
   - `startDate` and `endDate` cannot be in the past (disabled in the calendar UI and validated on submit).
   - `endDate` must be greater than or equal to `startDate`.
 - **Integrated Views**: The Leaves view dynamically resolves and displays the employee's **Name** alongside their ID.
-
----
-
-## Getting Started
-
-### 1. Start the Backend API
-1. Navigate to the `backend` folder:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the development server (uses `nodemon`):
-   ```bash
-   npm run dev
-   ```
-   The backend server will run on `http://localhost:3000`.
-
-### 2. Run the Frontend
-1. Open `frontend/index.html` in your web browser.
-2. For the best experience (and to allow `fetch` requests for templates without CORS blocking local file protocol issues), open it using a local development server such as VS Code's **Live Server** extension, or run:
-   ```bash
-   # From the frontend directory, e.g.:
-   npx serve .
-   ```
