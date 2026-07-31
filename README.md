@@ -24,11 +24,11 @@ After cloning or downloading the repository, open the root project folder in IDE
 
 ### 2. Run the Frontend
 
-**Option 1: VS Code Live Server (Recommended)**
+**Option 1: VS Code Live Server**
 1. Open the `/frontend` directory (or workspace root) in VSCode.
 2. Right-click `index.html` and select "Open with Live Server".
 
-**Option 2: Using Node.js CLI (Quickest without VS Code)**
+**Option 2: Using CLI**
 1. Navigate to the `frontend` folder in terminal:
    ```bash
    cd frontend
