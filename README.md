@@ -33,7 +33,7 @@ After cloning or downloading the repository, open the root project folder in IDE
    ```bash
    cd frontend
    ```
-2. If you have Node.js installed, run the following commands inside the `frontend/` folder:
+2. Run the following command inside the `frontend/` folder:
    ```bash
    npx serve .
    ```
