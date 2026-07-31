@@ -1,7 +1,7 @@
 import { API } from './api.js';
 import { showToast, getTodayString } from './utils.js';
 
-export function leaves(loadEmployees) {
+export function leaves() {
     const leavesTableBody = document.querySelector('#leaves-table tbody');
     const btnShowAddLeave = document.getElementById('btn-show-add-leave');
     const btnCancelLeave = document.getElementById('btn-cancel-leave');
@@ -106,7 +106,6 @@ export function leaves(loadEmployees) {
             addLeaveForm.reset();
             addLeaveFormContainer.classList.add('hidden');
             loadLeaves();
-            if (loadEmployees) loadEmployees(); // Refresh employees list to see updated leave balance
         } catch (error) {
             showToast(error.message, 'error');
         }

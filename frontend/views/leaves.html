@@ -1,0 +1,57 @@
+<div id="view-leaves" class="view-section">
+    <header class="page-header">
+        <h1 class="page-title" id="btn-nav-home">HR Management <span>Portal</span></h1>
+        <button class="btn btn-secondary" id="btn-nav-employees">View Employees</button>
+    </header>
+
+    <section class="card">
+        <header class="card-header">
+            <h2>Leave List</h2>
+            <button class="btn btn-primary" id="btn-show-add-leave">Request Leave</button>
+        </header>
+        
+        <div class="form-container hidden" id="add-leave-form-container">
+            <form id="add-leave-form">
+                <div class="input-group">
+                    <label for="leave-emp">Employee ID</label>
+                    <input type="number" id="leave-emp" required placeholder="Employee ID (e.g. 1)">
+                </div>
+                <div class="input-group">
+                    <label for="leave-start">Start Date</label>
+                    <input type="date" id="leave-start" required>
+                </div>
+                <div class="input-group">
+                    <label for="leave-end">End Date</label>
+                    <input type="date" id="leave-end" required>
+                </div>
+                <div class="input-group">
+                    <label for="leave-reason">Reason</label>
+                    <input type="text" id="leave-reason" required placeholder="Vacation">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-leave">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <table id="leaves-table">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

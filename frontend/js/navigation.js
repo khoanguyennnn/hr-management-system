@@ -1,48 +1,53 @@
-export function navigation({ onNavigateEmployees, onNavigateLeaves }) {
-    const viewHome = document.getElementById('view-home');
-    const viewEmployees = document.getElementById('view-employees');
-    const viewLeaves = document.getElementById('view-leaves');
+import { employees } from './employees.js';
+import { leaves } from './leaves.js';
 
-    const btnGoEmployees = document.getElementById('btn-go-employees');
-    const btnGoLeaves = document.getElementById('btn-go-leaves');
-    const btnNavLeaves = document.getElementById('btn-nav-leaves');
-    const btnNavEmployees = document.getElementById('btn-nav-employees');
-    const btnNavHomes = document.querySelectorAll('#btn-nav-home');
+export function navigation() {
+    const appRoot = document.getElementById('app-root');
 
-    function hideAllViews() {
-        viewHome.classList.add('hidden');
-        viewEmployees.classList.add('hidden');
-        viewLeaves.classList.add('hidden');
+    async function loadView(viewName) {
+        const response = await fetch(`views/${viewName}.html`);
+        const html = await response.text();
+        appRoot.innerHTML = html;
     }
 
-    function showView(viewId) {
-        hideAllViews();
-        document.getElementById(viewId).classList.remove('hidden');
+    async function showHome() {
+        await loadView('home');
+        
+        const btnGoEmployees = document.getElementById('btn-go-employees');
+        const btnGoLeaves = document.getElementById('btn-go-leaves');
+
+        btnGoEmployees.addEventListener('click', showEmployees);
+        btnGoLeaves.addEventListener('click', showLeaves);
     }
 
-    btnGoEmployees.addEventListener('click', () => {
-        showView('view-employees');
-        onNavigateEmployees();
-    });
+    async function showEmployees() {
+        await loadView('employees');
+        
+        const { loadEmployees } = employees();
+        
+        const btnNavLeaves = document.getElementById('btn-nav-leaves');
+        const btnNavHomes = document.querySelectorAll('#btn-nav-home');
+        
+        btnNavLeaves.addEventListener('click', showLeaves);
+        btnNavHomes.forEach(btn => btn.addEventListener('click', showHome));
 
-    btnGoLeaves.addEventListener('click', () => {
-        showView('view-leaves');
-        onNavigateLeaves();
-    });
+        loadEmployees();
+    }
 
-    btnNavLeaves.addEventListener('click', () => {
-        showView('view-leaves');
-        onNavigateLeaves();
-    });
+    async function showLeaves() {
+        await loadView('leaves');
+        
+        const { loadLeaves } = leaves();
+        
+        const btnNavEmployees = document.getElementById('btn-nav-employees');
+        const btnNavHomes = document.querySelectorAll('#btn-nav-home');
+        
+        btnNavEmployees.addEventListener('click', showEmployees);
+        btnNavHomes.forEach(btn => btn.addEventListener('click', showHome));
 
-    btnNavEmployees.addEventListener('click', () => {
-        showView('view-employees');
-        onNavigateEmployees();
-    });
+        loadLeaves();
+    }
 
-    btnNavHomes.forEach(btn => {
-        btn.addEventListener('click', () => {
-            showView('view-home');
-        });
-    });
+    // Start with home
+    showHome();
 }
