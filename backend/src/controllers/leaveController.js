@@ -55,8 +55,23 @@ const approveLeaveRequest = (req, res, next) => {
   }
 };
 
+// [PATCH] /leave/:id/decline
+const declineLeaveRequest = (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const declinedLeave = store.declineLeaveRequest(id);
+    res.status(200).json({ success: true, data: declinedLeave });
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json({ success: false, error: error.message });
+    }
+    next(error);
+  }
+};
+
 module.exports = {
   getLeaveRequests,
   createLeaveRequest,
-  approveLeaveRequest
+  approveLeaveRequest,
+  declineLeaveRequest
 };

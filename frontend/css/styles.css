@@ -338,6 +338,11 @@ tr:hover td {
     color: #6ee7b7;
 }
 
+.status-declined {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

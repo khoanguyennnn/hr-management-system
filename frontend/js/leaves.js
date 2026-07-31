@@ -44,7 +44,10 @@ export function leaves() {
                 <td>${leave.reason}</td>
                 <td><span class="status-badge status-${leave.status}">${leave.status}</span></td>
                 <td>
-                    ${leave.status === 'pending' ? `<button class="btn btn-success btn-approve-leave" data-id="${leave.id}">Approve</button>` : ''}
+                    ${leave.status === 'pending' ? `
+                        <button class="btn btn-success btn-approve-leave" data-id="${leave.id}">Approve</button>
+                        <button class="btn btn-danger btn-decline-leave" data-id="${leave.id}">Decline</button>
+                    ` : ''}
                 </td>
             `;
             leavesTableBody.appendChild(tr);
@@ -56,6 +59,19 @@ export function leaves() {
                 try {
                     await API.approveLeaveRequest(id);
                     showToast('Leave approved successfully');
+                    loadLeaves();
+                } catch (error) {
+                    showToast(error.message, 'error');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-decline-leave').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const id = e.target.dataset.id;
+                try {
+                    await API.declineLeaveRequest(id);
+                    showToast('Leave declined successfully');
                     loadLeaves();
                 } catch (error) {
                     showToast(error.message, 'error');

@@ -93,6 +93,23 @@ const store = {
     }
     leaveRequest.status = 'approved';
     return leaveRequest;
+  },
+
+  declineLeaveRequest(id) {
+    const leaveRequest = this.leaveRequests.find((req) => String(req.id) === String(id));
+    if (!leaveRequest) {
+      const error = new Error('Leave request not found.');
+      error.statusCode = 404;
+      throw error;
+    }
+    if (leaveRequest.status === 'pending') {
+      const employee = this.getEmployeeById(leaveRequest.employeeId);
+      if (employee) {
+        employee.leaveBalance += 1;
+      }
+    }
+    leaveRequest.status = 'declined';
+    return leaveRequest;
   }
 };
 

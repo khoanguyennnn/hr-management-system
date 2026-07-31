@@ -97,6 +97,7 @@ hr-management-system/
   - `GET /leave` → Fetch all leave requests.
   - `POST /leave` → Request a leave (employeeId, startDate, endDate, reason). Reduces the employee's `leaveBalance` by 1.
   - `PATCH /leave/:id/approve` → Approve a leave request (changes status to `approved`).
+  - `PATCH /leave/:id/decline` → Decline a leave request (changes status to `declined` and refunds the employee's `leaveBalance` by 1).
 
 ---
 

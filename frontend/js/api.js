@@ -54,4 +54,8 @@ export class API {
     static approveLeaveRequest(id) {
         return this.request(`/leave/${id}/approve`, 'PATCH');
     }
+
+    static declineLeaveRequest(id) {
+        return this.request(`/leave/${id}/decline`, 'PATCH');
+    }
 }
