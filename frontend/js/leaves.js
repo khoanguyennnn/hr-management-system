@@ -8,17 +8,19 @@ export function leaves() {
     const addLeaveFormContainer = document.getElementById('add-leave-form-container');
     const addLeaveForm = document.getElementById('add-leave-form');
 
-    // Set min date for leave request to today
+    // Set minimum date to current date
     const todayStr = getTodayString();
     document.getElementById('leave-start').min = todayStr;
     document.getElementById('leave-end').min = todayStr;
 
     async function loadLeaves() {
         try {
-            const [leaves, employees] = await Promise.all([
-                API.getLeaveRequests(),
-                API.getEmployees()
-            ]);
+            const [leaves, employees] = await Promise.all(
+                [
+                    API.getLeaveRequests(),
+                    API.getEmployees()
+                ]
+            );
 
             const employeeMap = {};
             employees.forEach(emp => {
@@ -37,12 +39,20 @@ export function leaves() {
             const tr = document.createElement('tr');
             const empName = employeeMap[leave.employeeId] || 'Unknown';
             tr.innerHTML = `
-                <td><span title="${leave.employeeId}">${leave.employeeId}</span></td>
+                <td>
+                    <span title="${leave.employeeId}">
+                        ${leave.employeeId}
+                    </span>
+                </td>
                 <td>${empName}</td>
                 <td>${leave.startDate}</td>
                 <td>${leave.endDate}</td>
                 <td>${leave.reason}</td>
-                <td><span class="status-badge status-${leave.status}">${leave.status}</span></td>
+                <td>
+                    <span class="status-badge status-${leave.status}">
+                        ${leave.status}
+                    </span>
+                </td>
                 <td>
                     ${leave.status === 'pending' ? `
                         <button class="btn btn-success btn-approve-leave" data-id="${leave.id}">Approve</button>
@@ -82,7 +92,7 @@ export function leaves() {
 
     // Event Listener
     btnShowAddLeave.addEventListener('click', () => {
-        addLeaveFormContainer.classList.remove('hidden');
+        addLeaveFormContainer.classList.toggle('hidden');
     });
 
     btnCancelLeave.addEventListener('click', () => {

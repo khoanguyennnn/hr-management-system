@@ -31,8 +31,21 @@ export function employees() {
                 <td>${emp.department}</td>
                 <td>${emp.leaveBalance}</td>
                 <td>
-                    <button class="btn btn-secondary btn-edit-emp" data-id="${emp.id}" data-name="${emp.name}" data-dept="${emp.department}" data-leave="${emp.leaveBalance}">Edit</button>
-                    <button class="btn btn-danger btn-delete-emp" data-id="${emp.id}">Delete</button>
+                    <button 
+                        class="btn btn-edit btn-edit-emp btn-action" 
+                        data-id="${emp.id}" 
+                        data-name="${emp.name}" 
+                        data-dept="${emp.department}" 
+                        data-leave="${emp.leaveBalance}"
+                    >
+                        Edit
+                    </button>
+                    <button 
+                        class="btn btn-danger btn-delete-emp btn-action" 
+                        data-id="${emp.id}"
+                    >
+                        Delete
+                    </button>
                 </td>
             `;
             employeesTableBody.appendChild(tr);
@@ -72,7 +85,7 @@ export function employees() {
         addEmployeeForm.reset();
         employeeFormTitle.textContent = 'Add New Employee';
         btnSubmitEmployee.textContent = 'Save';
-        addEmployeeFormContainer.classList.remove('hidden');
+        addEmployeeFormContainer.classList.toggle('hidden');
     });
 
     btnCancelEmployee.addEventListener('click', () => {

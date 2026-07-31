@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/employees', employeeRoutes);
 app.use('/leave', leaveRoutes);
 
-// Error Handling Middleware
+// Error Handler
 app.use(errorHandler);
 
 module.exports = app;

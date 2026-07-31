@@ -6,7 +6,7 @@
     --text-muted: #94a3b8;
     --primary: #3b82f6;
     --primary-hover: #2563eb;
-    --secondary: #475569;
+    --secondary: #b3b3b3;
     --secondary-hover: #334155;
     --danger: #ef4444;
     --danger-hover: #dc2626;
@@ -28,9 +28,9 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     background-image:
-        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.5) 0, transparent 50%),
-        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.3) 0, transparent 50%);
+        radial-gradient(at 0% 0%, #09080c 0, transparent 50%),
+        radial-gradient(at 50% 0%, #25192780 0, transparent 50%),
+        radial-gradient(at 100% 0%, #2d2b2b4d 0, transparent 50%);
     background-attachment: fixed;
 }
 
@@ -62,6 +62,7 @@ body {
     font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: 2.5rem;
+    cursor: default;
 }
 
 .main-title span {
@@ -78,34 +79,44 @@ body {
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
     font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
-    border: none;
+    color: #ffffff;
+    /* background: linear-gradient(186deg, #797c81, #824bff); */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 50px;
     cursor: pointer;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: transform 0.3s ease-in-out, width 0.1s ease-in-out, color 1s;
+    box-shadow:
+        0 8px 32px 0 rgba(59, 130, 246, 0.1),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .btn-animated::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: -50%;
+    width: 0;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+    background: #ffffff;
+    transform: skew(35deg);
+    z-index: -1;
+    transition: width 0.5s;
 }
 
 .btn-animated:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
+    color: var(--primary);
 }
 
 .btn-animated:hover::before {
-    left: 100%;
+    width: 170%;
 }
 
 .btn-animated:active {
@@ -120,9 +131,19 @@ body {
 }
 
 .page-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 27rem;
+    height: 6rem;
     font-size: 2rem;
     font-weight: 700;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.page-title:hover {
+    font-size: 2.1rem;
 }
 
 .page-title span {
@@ -182,8 +203,13 @@ body {
 }
 
 .btn-secondary {
-    background-color: var(--secondary);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
     color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary:hover {
@@ -201,6 +227,17 @@ body {
     color: white;
 }
 
+.btn-edit {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.btn-edit:hover {
+    background-color: var(--secondary);
+    color: white;
+}
+
 .btn-success {
     background-color: transparent;
     color: var(--success);
@@ -210,6 +247,10 @@ body {
 .btn-success:hover {
     background-color: var(--success);
     color: white;
+}
+
+.btn-action {
+    width: 5rem;
 }
 
 .form-container {
@@ -252,6 +293,18 @@ body {
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: #e6e6e6;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -273,6 +326,7 @@ td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--card-border);
+    text-wrap-mode: nowrap;
 }
 
 th {
@@ -355,6 +409,49 @@ tr:hover td {
     }
 }
 
-@media (min-width: 1024px) {
-    /* removed dashboard grid */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .page-title {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.8rem;
+    }
+
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .btn-primary {
+        font-size: 0.775rem;
+    }
+
+    .btn-animated {
+        padding: 1rem;
+    }
+
+    .main-title {
+        font-size: 1.989rem;
+    }
+}
+
+/* custom class */
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
