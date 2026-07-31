@@ -1,5 +1,6 @@
 const store = require('../models/store');
 
+// [GET] /leave/
 const getLeaveRequests = (req, res, next) => {
   try {
     const leaves = store.getAllLeaveRequests();
@@ -9,10 +10,11 @@ const getLeaveRequests = (req, res, next) => {
   }
 };
 
+// [POST] /leave/
 const createLeaveRequest = (req, res, next) => {
   try {
     const { employeeId, startDate, endDate, reason } = req.body;
-    
+
     if (!employeeId || !startDate || !endDate || !reason) {
       return res.status(400).json({ success: false, error: 'employeeId, startDate, endDate, and reason are required' });
     }
@@ -39,6 +41,7 @@ const createLeaveRequest = (req, res, next) => {
   }
 };
 
+// [PATCH] /leave/:id/approve
 const approveLeaveRequest = (req, res, next) => {
   try {
     const { id } = req.params;

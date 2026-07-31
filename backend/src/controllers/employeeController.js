@@ -1,5 +1,6 @@
 const store = require('../models/store');
 
+// [GET] /employees/
 const getEmployees = (req, res, next) => {
   try {
     const employees = store.getAllEmployees();
@@ -9,6 +10,7 @@ const getEmployees = (req, res, next) => {
   }
 };
 
+// [GET] /employees/:id
 const getEmployeeById = (req, res, next) => {
   try {
     const { id } = req.params;
@@ -24,6 +26,7 @@ const getEmployeeById = (req, res, next) => {
   }
 };
 
+// [POST] /employees/
 const createEmployee = (req, res, next) => {
   try {
     const { name, department, leaveBalance } = req.body;
@@ -38,6 +41,7 @@ const createEmployee = (req, res, next) => {
   }
 };
 
+// [DELETE] /employees/:id
 const deleteEmployee = (req, res, next) => {
   try {
     const { id } = req.params;
