@@ -33,6 +33,20 @@ const store = {
     return this.employees.length < initialLength; // true if deleted
   },
 
+  updateEmployee(id, employeeData) {
+    const employee = this.getEmployeeById(id);
+    if (!employee) {
+      const error = new Error('Employee not found.');
+      error.statusCode = 404;
+      throw error;
+    }
+    const { name, department, leaveBalance } = employeeData;
+    if (name !== undefined) employee.name = name;
+    if (department !== undefined) employee.department = department;
+    if (leaveBalance !== undefined) employee.leaveBalance = Number(leaveBalance);
+    return employee;
+  },
+
   // Leave methods
   getAllLeaveRequests() {
     return this.leaveRequests;

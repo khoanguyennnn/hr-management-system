@@ -1,6 +1,6 @@
 const API_BASE_URL = 'http://localhost:3000';
 
-class API {
+export class API {
     static async request(endpoint, method = 'GET', body = null) {
         const options = {
             method,
@@ -37,6 +37,10 @@ class API {
 
     static deleteEmployee(id) {
         return this.request(`/employees/${id}`, 'DELETE');
+    }
+
+    static updateEmployee(id, employee) {
+        return this.request(`/employees/${id}`, 'PUT', employee);
     }
 
     static getLeaveRequests() {

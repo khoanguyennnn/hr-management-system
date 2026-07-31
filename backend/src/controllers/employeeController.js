@@ -57,9 +57,28 @@ const deleteEmployee = (req, res, next) => {
   }
 };
 
+// [PUT] /employees/:id
+const updateEmployee = (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, department } = req.body;
+    if (!name || !department) {
+      return res.status(400).json({ success: false, error: 'Name and department are required' });
+    }
+    const updated = store.updateEmployee(id, req.body);
+    res.status(200).json({ success: true, data: updated });
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json({ success: false, error: error.message });
+    }
+    next(error);
+  }
+};
+
 module.exports = {
   getEmployees,
   getEmployeeById,
   createEmployee,
-  deleteEmployee
+  deleteEmployee,
+  updateEmployee
 };
