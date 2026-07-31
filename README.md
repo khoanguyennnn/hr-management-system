@@ -23,11 +23,11 @@ A modern Single Page Application (SPA) designed to manage employees and leave re
 
 ### 2. Run the Frontend
 > **Note:** Because the application uses ES6 Modules and dynamic view rendering, it must be served over HTTP/HTTPS rather than opening via `file://` protocol directly.
-### Option 1: VS Code Live Server (Recommended)
+**Option 1: VS Code Live Server (Recommended)**
 1. Open the `/frontend` directory (or workspace root) in **VS Code**.
 2. Right-click `index.html` and select **Open with Live Server**.
 
-### Option 2: Using Node.js CLI (Quickest without VS Code)
+**Option 2: Using Node.js CLI (Quickest without VS Code)**
 If you have Node.js installed, run one of the following commands inside the `frontend/` folder:
    ```bash
    # From the frontend directory, e.g.:
