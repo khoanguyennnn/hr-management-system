@@ -430,7 +430,6 @@ tr:hover td {
     .page-title {
         width: 100%;
         justify-content: center;
-        font-size: 1.8rem;
     }
 
     .btn-secondary {
@@ -443,15 +442,10 @@ tr:hover td {
 
     .btn-animated {
         padding: 1rem;
+        font-size: .85rem;
     }
 
     .main-title {
         font-size: 1.989rem;
     }
-}
-
-/* custom class */
-.vertical-align {
-    display: flex;
-    align-items: center;
 }
