@@ -1,9 +1,9 @@
-const store = require('../models/store');
+const leaveStore = require('../models/leaveStore');
 
 // [GET] /leave/
 const getLeaveRequests = (req, res, next) => {
   try {
-    const leaves = store.getAllLeaveRequests();
+    const leaves = leaveStore.getAllLeaveRequests();
     res.status(200).json({ success: true, data: leaves });
   } catch (error) {
     next(error);
@@ -30,7 +30,7 @@ const createLeaveRequest = (req, res, next) => {
       return res.status(400).json({ success: false, error: 'End date must be greater than or equal to start date.' });
     }
 
-    const newLeaveRequest = store.createLeaveRequest(req.body);
+    const newLeaveRequest = leaveStore.createLeaveRequest(req.body);
     res.status(201).json({ success: true, data: newLeaveRequest });
   } catch (error) {
     // We catch the error thrown from store (e.g. Employee not found or insufficient balance)
@@ -45,7 +45,7 @@ const createLeaveRequest = (req, res, next) => {
 const approveLeaveRequest = (req, res, next) => {
   try {
     const { id } = req.params;
-    const approvedLeave = store.approveLeaveRequest(id);
+    const approvedLeave = leaveStore.approveLeaveRequest(id);
     res.status(200).json({ success: true, data: approvedLeave });
   } catch (error) {
     if (error.statusCode) {
@@ -59,7 +59,7 @@ const approveLeaveRequest = (req, res, next) => {
 const declineLeaveRequest = (req, res, next) => {
   try {
     const { id } = req.params;
-    const declinedLeave = store.declineLeaveRequest(id);
+    const declinedLeave = leaveStore.declineLeaveRequest(id);
     res.status(200).json({ success: true, data: declinedLeave });
   } catch (error) {
     if (error.statusCode) {
